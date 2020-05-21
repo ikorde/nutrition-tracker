@@ -1,0 +1,87 @@
+.responsiveChart{
+  min-height: 300px !important;
+  width: 100% !important;
+  height: 50vh !important;
+}
+.form-group{
+  margin-bottom: 50px;
+}
+
+.panel-heading {
+  height: auto;
+}
+.profile{
+  border-radius: 50%;
+  height: 110px;
+  width:110px ;
+}
+.image-div{
+margin:0px 20px;
+margin-bottom: 40px;
+}
+.lbl{
+  padding-left:  20px;
+}
+.panel-footer{
+  height: 60px;
+}
+.widget-right {
+padding: 3px;
+height: 20px;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  margin-left: 30px;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;   
+  cursor: inherit;
+  display: block;
+}
+.panel{
+  padding-bottom: 0px;
+  border-radius:0px ;
+}
+#pbody{
+  overflow-x: scroll;
+  height: 500px;
+}
+input{
+  border-radius: 0px;
+}
+button{
+  border-radius:0px ;
+}
+
+.fakeButton{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: #069;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

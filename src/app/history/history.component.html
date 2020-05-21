@@ -1,0 +1,150 @@
+<div class="panel panel-default">
+    
+    <div class="panel-heading"  style="overflow: auto; min-height: 80px; padding: 20px;" >
+     
+      <form [formGroup]="form" class="col-lg-12" (ngSubmit)="onSubmit(form.value)">
+        <div class="col-lg-2 col-sm-12">
+          <h4 class="" style="padding-top:5px; padding-left: 0px;"><b>SELECT A DATE</b></h4>
+        </div>
+        <div class="col-lg-4 col-sm-12" style="padding: 0px;">
+           <input [formControl]="selectedDate"  max="{{maxDate}}" class="form-control input-md"   id="btn-input" placeholder="Type your message here..." type="date">
+      </div> 
+      <div class="col-lg-2 col-sm-12" style="padding: 0px;">
+          <button class="btn btn-success btn-block"><i class="fa fa-search"> </i> Search</button>
+      </div>
+   
+      <div class="col-lg-2 col-sm-12" style="padding: 0px;">
+          <button type="button" (click)="loadFrequent()" class="btn btn-primary btn-block">Load Frequent Meals</button>
+      </div>
+
+      <div class="col-lg-2 col-sm-12" style="padding: 0px;">
+          <button type="button" (click)="loadRecipes()" class="btn btn-info btn-block pull-right">Load Recipes</button>
+      </div>
+    </form>
+    </div>
+  
+    <div *ngIf="showFreqMealorHist" class="panel-body" id="pbody">
+      <h4 *ngIf="showNotFound" style="color: red;">No Record found</h4>
+          <!-- Name input-->
+          <div *ngFor="let food of foods" id="mainDiv" style="border:1px solid #edeeed;padding: 10px;">
+              <div  class="panel panel-teal" style="background: #1ebfae;
+              color: #fff;">
+                  <div class="panel-body">
+        
+                    <div class="col-lg-12">
+                    <p style="font-size: 18px;margin-top: 15px; padding: 0px;" class="col-lg-8">
+                    <span><b>{{food.description}} ({{food.foodClass}}) </b></span> 
+                    </p>
+                    <div class="col-lg-4 col-sm-12" style="padding:0px ;">
+                        <div class="col-lg-6">
+                          <button type="button" *ngIf="food.isEated" disabled   class="btn btn-block btn-primary"><i class="fa fa-check"></i></button> 
+                            <input type="button" *ngIf="!food.isEated" (click)="markAsEat($event)" id={{food.foodID}} class="btn btn-block btn-success" value="Mark as Eat">
+                        </div>
+                       <div class="col-lg-6">
+                          <input type="button" (click)="deleteFood($event)" id={{food.foodID}} class="btn btn-block btn-danger" value="Delete">
+                       </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12" style="margin-top: 10px; padding: 0px;">
+                        
+                      <div ><p>Food Nutrients:</p>
+                          <p> <span *ngFor="let nut of food.foodNutrients">
+                             <h5 class="col-lg-3" style="background-color: cornflowerblue;
+                             padding: 7px;
+                             margin: 4px;
+                             color: white;
+                             border-radius: 5px;" >{{nut.nutrient.name}} : {{nut.amount}}{{nut.nutrient.unitName}} </h5> 
+                          </span> </p></div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12" style="margin-top: 10px; padding: 0px;">
+                        <div ><p *ngIf="food.labelNutrients">Label Nutrients: </p>
+                          <p > <span *ngFor="let nut of food.labelNutrients">
+                             <h5 class="col-lg-3" style="background-color: cornflowerblue;
+                             padding: 7px;
+                             margin: 4px;
+                             color: white;
+                             border-radius: 5px;" > {{nut.name}}: {{nut.value}} </h5> 
+                          </span> </p></div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+            <!-- Name input-->
+
+            <div *ngFor="let recipe of recipeArray" style="margin: 20px">
+              <p>
+                <span ><h4> <b><u>{{recipe.name}}</u></b> <b>{{recipe.ingredients}}</b> {{recipe.nutrientName}} {{recipe.nutrientValue}}{{recipe.nutrientUnit}}</h4></span>
+              </p>
+            </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

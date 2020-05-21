@@ -1,0 +1,191 @@
+<!--/.row-->
+
+
+<div class="row">
+  <div class="col-lg-3">
+  <div class="panel panel-default" >
+    <h4 style="padding: 20px"><b> TODAY'S TOTAL {{getTotal()}} </b></h4>
+    <h5 style="padding-left: 20px"><b> CALORIES: </b> {{total11}} </h5>
+    <h5 style="padding-left: 20px"><b> FAT: </b> {{total0}} </h5>
+    <h5 style="padding-left: 20px"><b> SATURATED FAT: </b> {{total1}} </h5>
+    <h5 style="padding-left: 20px"><b> TRANS FAT: </b> {{total2}} </h5>
+    <h5 style="padding-left: 20px"><b> CHOLESTEROL: </b> {{total3}} </h5>
+    <h5 style="padding-left: 20px"><b> SODIUM: </b> {{total4}} </h5>
+    <h5 style="padding-left: 20px"><b> CARBOHYDRATES: </b> {{total5}} </h5>
+    <h5 style="padding-left: 20px"><b> FIBER: </b> {{total6}} </h5>
+    <h5 style="padding-left: 20px"><b> SUGARS: </b> {{total7}} </h5>
+    <h5 style="padding-left: 20px"><b> PROTEIN: </b> {{total8}} </h5>
+    <h5 style="padding-left: 20px"><b> CALCIUM: </b> {{total9}} </h5>
+    <h5 style="padding-left: 20px; padding-bottom: 20px"><b> IRON: </b> {{total10}} </h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="col-lg-7">
+          <div class="panel panel-default" >
+          <div class="panel-heading" style="max-height: 110px; min-height: 40px; padding: 20px;">
+                <h4 class="" style="padding:5px; padding-left: 20px;"><b> DAILY FOOD ENTRY </b></h4>
+                <form class="">
+                  <div class="col-lg-10 col-sm-12" style="padding: 0px;">
+                    <input class="form-control"  style="border-radius: 0px;border: 2px solid #30a5ff;" (keyup)="setName($event)"  (keydown)="onKeydown($event)" type="search" placeholder="Search meals"
+                      aria-label="Search">
+                   </div>
+                   <div class="col-lg-2 col-sm-12" style="padding: 0px;">
+                     <button class="btn btn-primary btn-block" (click)="getSearchedResults()" style="border-radius: 0px;"><i class="fa fa-search"></i></button>
+                   </div>
+                  </form>
+            </div>
+            <form class="form-horizontal" action="" method="post">
+            <div class="panel-body" id="pbody">
+              
+                  <!-- Name input-->
+                  <div><h5 *ngIf="noFoodFound" style="text-align: center; color: red;">No Record Found.</h5></div>
+                          <div *ngFor="let food of foods" id="mainDiv" style="border:1px solid #edeeed;padding: 10px;">
+                                  <div  class="panel panel-teal" style="background: #1ebfae;
+                                  color: #fff;">
+                                      <div class="panel-body">
+                            
+                                        <div class="col-lg-12">
+                                        <p style="font-size: 18px;">
+                                        <span><b>{{food.description}}</b></span> 
+                                        </p>
+                                        <div class="col-lg-8 col-sm-12" style="margin-top: 10px; padding: 0px;">
+                                            <div >Score : {{food.score}} <div>Publish Date: {{food.publishedDate}}</div></div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-12" style="padding:0px ;">
+                                        
+                                            <input type="button"  (click)="showDetail($event)" id={{food.fdcId}} class="btn btn-block btn-success" value="View Details">
+                                      
+                                      </div>
+                                      </div>
+                                      
+                                      
+                                      </div>
+                                    </div>
+                                
+                            </div>
+
+      
+                  <!-- Form actions -->
+         </div>
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-12 widget-right">
+                      <div class="col-md-12 col-sm-12 pull-right">
+
+                          <button type="button" *ngIf="isNextDisable" (click)="loadMore($event)"  id={{nextPage}} class="btn btn-block btn-primary btn-md pull-right">Load More Foods</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </form>
+          </div>
+      
+        </div>
+        <div class="col-lg-5">
+            <div class="panel panel-default">
+              <div class="panel-heading"  style="max-height: 110px; min-height: 40px; padding: 20px;">
+                  <h5><i class="fa fa-list"></i> &nbsp;&nbsp; Food Detail : {{slectedMealDescription}}</h5>
+              </div>
+              <form class="form-horizontal" action="" method="post">
+              <div class="panel-body" id="pbody">
+                    <!-- Name input-->     
+                  <table class="table">
+                    <thead>
+                      <th>Name</th>
+                      <th>Value</th>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr *ngFor="let value of foodDetail">
+
+                          <td>{{value.name}}</td>
+                          <td>{{value.value}}{{value.unit}}</td>
+                        </tr>
+        
+                    </tbody>
+                  </table>
+                    <!-- Form actions -->
+              </div>
+              <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-12 widget-right">
+                      <div class="col-md-6 col-sm-12 pull-right">
+                          <button type="button" *ngIf="showAddMealBtn"  (click)="addMeanlForToday()"  class="btn btn-block btn-primary btn-md pull-right">Add this for Today Meal</button>
+                          <button type="button" *ngIf="alreadyAddedMeal" disabled   class="btn btn-block btn-success btn-md pull-right"> Added for today Meal Plan</button>
+      
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <button type="button" *ngIf="showAddMealFrequentBtn"  (click)="addMeanlFrequent()"  class="btn btn-block btn-primary btn-md pull-right">Add Frequent Meal</button>
+                          <button type="button" *ngIf="alreadyAddedFrequentMeal" disabled   class="btn btn-block btn-success btn-md pull-right">Added In Frequent</button>
+                        </div>
+
+
+
+                        <div style="margin-top: 60px;">
+                          <div class="panel panel-default">
+                            <div class="panel-heading" style="max-height: 110px; min-height: 40px; padding: 10px;">
+                            <h4><b> Select other date </b></h4>
+                          </div>
+                            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+                            <!-- <form [formGroup]="form"> -->
+                              <!-- PROBLEM 1: There is a problem with when you click the add frequent meal this button gets changed as well -->
+                              <!-- PROBLEM 2: Add to previous button doesn't work... maybe it is not set with the form correctly? -->
+                              <input [formControl]="selectedDate"  max="{{maxDate}}" class="form-control input-md"   id="btn-input" placeholder="Type your message here..." type="date">
+                              <button type="button" *ngIf="showAddMealPrevBtn"   (click)="onSubmit(form.value)" class="btn btn-block btn-primary btn-md pull-right">Add to Previous Date</button>
+                              <button type="button" *ngIf="alreadyAddedPrevMeal" disabled   class="btn btn-block btn-success btn-md pull-right">Added to Previous Date</button>
+    
+                            </form>
+                          </div>
+           
+                          </div>
+                          <div>
+                          <button type="button" *ngIf="showAddRecipeBtn" (click)="addRecipe()" class="btn btn-block btn-primary btn-md">Add to Recipe</button>
+                          <button type="button" *ngIf="alreadyAddedRecipe" disabled class="btn btn-block btn-success btn-md">Added to Recipe</button>
+                          <div [hidden]="showRecipe">
+                            <table class="table">
+                              <tbody class="table-body">
+                                  <tr>
+                                    <button class="fakeButton" (click)="formAvail()" style="margin: 10px;">Create new recipe</button>
+                                    <div [hidden]="showForm">
+                                        <input class="form-control"  style="border-radius: 0px;border: 2px solid #30a5ff;" (keyup)="setRecipeName($event)" (keydown)="createRecipe($event)" type="search" placeholder="Recipe Name"
+                                        aria-label="Search">
+                                    </div>
+                                  </tr>
+                                  <tr *ngFor="let recipe of recipeArray">
+                                      <td><button class="fakeButton" (click)="addRecipeIngredient(recipe.name)">{{recipe.name}}</button></td>
+                                      <td><button class="fakeButton" (click)="addRecipetoTodaysMeal(recipe.name)">Add to Today's Meals</button></td>
+                                  </tr>
+                  
+                              </tbody>
+                            </table>
+                          </div>
+                      </div>
+            
+                    </div>
+                    </div>
+            </div>
+            
+          
+         
+            </form>
+            </div>
+        
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div *ngFor="let recipe of data">
+  <p>{{recipe.foodID}}</p>
+</div>
+
+
+
+
+
+
+
+
+
+

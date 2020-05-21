@@ -1,0 +1,245 @@
+<div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h5>User Profile</h5></div>
+          <form class="form-horizontal" action="" method="post">
+          <div class="panel-body">
+              <div class="text-left image-div">
+                  
+                  <img  src="{{photoUrl}}" class="profile">
+                  <span class="btn btn-primary btn-file">
+                    Change Profile <input (change)="updateProfile($event)" type="file">
+                </span>
+               
+                </div>
+              
+                <!-- Name input-->
+                
+  
+                <div class="form-group">
+                  <label class="lbl" for="name">Username</label>
+                  <div class="col-md-12">
+                    <input id="name" name="name" [(ngModel)]="userName"  value="{{userName}}" type="text" placeholder="user name" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl" for="email">Email</label>
+                    <div class="col-md-12">
+                      <input id="email" name="email" disabled value="{{userEmail}}" type="email" placeholder="user email" class="form-control">
+                    </div>
+                  </div>
+  
+    
+                <!-- Form actions -->
+                
+        
+          
+          </div>
+          <div class="panel-footer">
+              <div class="form-group">
+                  <div class="col-md-12 widget-right">
+                    <div class="col-md-12 col-sm-12 pull-right">
+                        <button type="button" (click)="updateName()" class="btn btn-block btn-primary btn-md pull-right">Update Profile</button>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </form>
+        </div>
+    
+      </div>
+      <div class="col-lg-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5>BMI Calculator</h5></div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal" >
+            <div class="panel-body">
+                
+              <div class="form-group">
+                <label class="lbl" for="name"> Units</label>
+                <div class="col-md-12">
+                  <select (change)="changeUnits($event)" [formControl]="unit" id="unit" name="unit" class="form-control">
+                      <option>Metric</option>
+                      <option>Imperial</option>
+                  </select>
+                  <div *ngIf="unit.invalid && (unit.dirty ||  unit.touched)"> 
+                      <div style="color: red;" *ngIf="unit.errors.required"> 
+                           Unit required.
+                      </div>			   
+                      
+                   </div> 
+                </div>
+              </div>
+                  
+                    <div class="form-group">
+                        <label class="lbl" for="name"> Weight</label>
+                        <div class="col-md-12">
+                          <input id="weight" name="weight"[formControl]="weight"  type="number" placeholder="{{weightPlaceHolder}}" class="form-control">
+                          <div *ngIf="weight.invalid && (weight.dirty ||  weight.touched)"> 
+                              <div style="color: red;" *ngIf="weight.errors.required"> 
+                                   weight required.
+                              </div>			   
+                              
+                           </div> 
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="lbl" for="name"> Height</label>
+                          <div class="col-md-12">
+                            <input id="height" name="height" [formControl]="height"  type="number" placeholder="{{heightPlaceHolder}}" class="form-control">
+                            <div *ngIf="height.invalid && (height.dirty ||  height.touched)"> 
+                                <div style="color: red;" *ngIf="height.errors.required"> 
+                                     height required.
+                                </div>			   
+                                
+                             </div> 
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl" for="name">BMI Results</label>
+                            <div class="col-md-12">
+                              <input id="results" disabled name="results" value="{{bmi}}" type="number" class="form-control">
+                            </div>
+                          </div>
+                        
+      
+                  <!-- Form actions -->
+                  
+          
+            
+            </div>
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-12 widget-right">
+                      <div class="col-md-12 col-sm-12 pull-right">
+                          <button type="submit"  [disabled]="!form.valid" class="btn btn-block btn-primary btn-md pull-right">Calculate BMI</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </form>
+          </div>
+      
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h5>BMI Results</h5></div>
+              <form class="form-horizontal" action="" method="post">
+              <div class="panel-body">
+                  
+               
+                   <img src="../../assets/images/bmi.PNG" class="img-responsive" style=" height:355px;" width="auto">
+        
+                    <!-- Form actions -->
+                    
+            
+              
+              </div>
+              
+            </form>
+            </div>
+        
+          </div>
+          <div class="col-lg-12">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h5>Other Profile Information</h5></div>
+                <form class="form-horizontal" [formGroup]="profileForm" (ngSubmit)="submitProfile(profileForm.value)">
+                <div class="panel-body">
+                    
+                 
+                    
+                        <div class="row">
+                          <div class="col-lg-3">
+                            <label>Age</label>
+                            <input type="number" [formControl]="age"  name="age" class="form-control" placeholder="Age"> 
+                            <div *ngIf="age.invalid && (age.dirty ||  age.touched)"> 
+                                <div style="color: red;" *ngIf="age.errors.required"> 
+                                     Age required.
+                                </div>			   
+                              
+                             </div> 
+  
+                          </div>
+                          <div class="col-lg-3">
+                            <label>Height </label>
+                            <input type="number" [formControl]="profileHeight" name="profileHeight" class="form-control" placeholder="Height">
+                            <div *ngIf="profileHeight.invalid && (profileHeight.dirty ||  profileHeight.touched)"> 
+                                <div style="color: red;" *ngIf="profileHeight.errors.required"> 
+                                     Height required.
+                                </div>			   
+                              
+                             </div> 
+                          </div>
+                          <div class="col-lg-3">
+                              <label>Weight </label>
+                              <input type="number" [formControl]="profileWeight" name="profileWeight" class="form-control" placeholder="Weight">
+                              <div *ngIf="profileWeight.invalid && (profileWeight.dirty ||  profileWeight.touched)"> 
+                                  <div style="color: red;" *ngIf="profileWeight.errors.required"> 
+                                       Weight required.
+                                  </div>			   
+                                
+                               </div> 
+                            </div>
+                            <div class="col-lg-3">
+                                <label>BMI value</label>
+                                <input type="text" [formControl]="profileBmi" name="profileBmi" class="form-control" placeholder="BMI">
+                                <div *ngIf="profileBmi.invalid && (profileBmi.dirty ||  profileBmi.touched)"> 
+                                    <div style="color: red;" *ngIf="profileBmi.errors.required"> 
+                                         BMI required.
+                                    </div>			   
+                                  
+                                 </div> 
+                            </div>
+                            <!-- Choose goal -->
+                            <div class="col-lg-4">
+                                <label>Intake Goal</label>
+                                <h5>1 = increase fat intake; 2 = decrease fat intake</h5>
+                                <h5>3 = increase protein intake; 4 = decrease carbs intake</h5>
+                                <!-- change it so that it can be a toggle down and choose which one youre aiming for -->
+                                <input [formControl]="profileGoal" name="profileGoal" class="form-control">
+                                <div *ngIf="profileGoal.invalid && (profileGoal.dirty ||  profileGoal.touched)"> 
+                            
+                                    <!-- <div> 
+                                         <select name="profileGoal" class="form-control" class="select-css">
+                                           <option value="" disabled><font size="+5"> Select Goal</font></option>
+                                           <option value="Increase Fat">Increase Fat intake</option>
+                                           <option value="Decrease Fat">Decrease Fat intake</option>
+                                           <option value="Increase Protein">Increase Protein intake</option>
+                                           <option value="Decrease Carbohydrates">Decrease Carbohydrates intake</option>
+                                         </select>
+                                    </div>			    -->
+                                  
+                                 </div> 
+                            </div>
+                            <br>
+                            <div class="col-lg-12">
+                              <label>Describe your goal</label>
+                            <textarea [formControl]="profileGoalDescription" placeholder="how close you are from overall goals" cols="4" rows="4"  class="form-control"></textarea>
+                            <div *ngIf="profileGoalDescription.invalid && (profileGoalDescription.dirty ||  profileGoalDescription.touched)"> 
+                                <div style="color: red;" *ngIf="profileGoalDescription.errors.required"> 
+                                      Required Field.
+                                </div>			   
+                        
+                             </div> 
+                          </div>
+                        </div>
+                     
+              
+                
+                </div>
+                <div class="panel-footer">
+                    <div class="form-group">
+                        <div class="col-md-12 widget-right">
+                          <div class="col-md-3 col-sm-12 pull-right">
+                              <button type="submit" [disabled]="!profileForm.valid" class="btn btn-block btn-primary btn-md pull-right">Update</button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </form>
+              </div>
+          
+            </div>
+    </div>
+    
+  </div>

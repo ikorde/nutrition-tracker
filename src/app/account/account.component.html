@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h5>Change Password</h5></div>
+          <form class="form-horizontal" [formGroup]="CPform" (ngSubmit)="passwordChange(CPform.value)" >
+          <div class="panel-body">
+              <div class="form-group">
+                  <label class="lbl"   for="name">Current Password</label>
+                  <div class="col-md-12">
+                    <input   type="password" [(ngModel)]="op" value="{{op}}" [formControl]="oldPassword"  class="form-control">
+                    <div *ngIf="oldPassword.invalid && (oldPassword.dirty || oldPassword.touched)"> 
+                        <div style="color: red;" *ngIf="oldPassword.errors.required"> 
+                             Password is required.
+                        </div>			   
+                        <div style="color: red;" *ngIf="oldPassword.errors.minlength"> 
+                          Password should be at least 6 characters
+                     </div>	
+                     </div> 
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl"   for="name">New Password</label>
+                    <div class="col-md-12">
+                      <input   type="password" value="{{np}}" [(ngModel)]="np" [formControl]="newPassword"  class="form-control">
+                      <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)"> 
+                          <div style="color: red;" *ngIf="newPassword.errors.required"> 
+                               Password is required.
+                          </div>			   
+                          <div style="color: red;" *ngIf="newPassword.errors.minlength"> 
+                            Password should be at least 6 characters
+                       </div>	
+                       </div> 
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="lbl"  for="name">Confirm New Password</label>
+                      <div class="col-md-12">
+                        <input [formControl]="cNewPassword" value="{{cnp}}" [(ngModel)]="cnp" (keyup)="checkMatch()"  type="password"  class="form-control">
+                        <div *ngIf="cNewPassword.invalid && (cNewPassword.dirty || cNewPassword.touched)"> 
+                            <div style="color: red;" *ngIf="cNewPassword.errors.required"> 
+                                 Confirm password is required.
+                            </div>
+                            
+                         <div style="color: red;" *ngIf="cNewPassword.hasError('mismatch')"> 
+                          Confirm password must match.
+                     </div>
+            
+                         </div> 
+                      </div>
+                    </div>
+          </div>
+          <div class="panel-footer">
+              <div class="form-group">
+                  <div class="col-md-12 widget-right">
+                    <div class="col-md-12 col-sm-12 pull-right">
+                        <button type="submit" [disabled]="!CPform.valid" class="btn btn-block btn-primary btn-md pull-right">Change Password</button>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </form>
+        </div>
+    
+      </div>
+     
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h5>Change Email</h5></div>
+              <form class="form-horizontal" [formGroup]="CEform" (ngSubmit)="emailChange(CEform.value)" >
+              <div class="panel-body">
+                  <div class="form-group">
+                      <label class="lbl"   for="name">Current Password</label>
+                      <div class="col-md-12">
+                        <input   type="password" [(ngModel)]="ope" value="{{ope}}" [formControl]="oldEPassword"  class="form-control">
+                        <div *ngIf="oldEPassword.invalid && (oldEPassword.dirty || oldEPassword.touched)"> 
+                            <div style="color: red;" *ngIf="oldEPassword.errors.required"> 
+                                 Password is required.
+                            </div>			   
+                            <div style="color: red;" *ngIf="oldEPassword.errors.minlength"> 
+                              Password should be at least 6 characters
+                         </div>	
+                         </div> 
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl"   for="name">New Email</label>
+                        <div class="col-md-12">
+                          <input   type="email" [(ngModel)]="nee" value="{{nee}}" [formControl]="newEchange"  class="form-control">
+                          <div *ngIf="newEchange.invalid && (newEchange.dirty || newEchange.touched)"> 
+                              <div style="color: red;" *ngIf="newEchange.errors.required"> 
+                                   Email is required.
+                              </div>			   
+                              <div style="color: red;" *ngIf="newEchange.errors.pattren"> 
+                                wrong email formate
+                           </div>	
+                           </div> 
+                        </div>
+                      </div>
+                   
+              </div>
+              <div class="panel-footer">
+                  <div class="form-group">
+                      <div class="col-md-12 widget-right">
+                        <div class="col-md-12 col-sm-12 pull-right">
+                            <button type="submit" [disabled]="!CEform.valid" class="btn btn-block btn-primary btn-md pull-right">Change Email</button>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </form>
+            </div>
+        
+          </div>
+
+          <div class="col-lg-4">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h5>Delete Account</h5></div>
+                <form class="form-horizontal" [formGroup]="delform" (ngSubmit)="deleteUser(delform.value)" >
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="lbl"   for="name">Current Password</label>
+                        <div class="col-md-12">
+                          <input   type="password" [(ngModel)]="del" value="{{del}}" [formControl]="delPassword"  class="form-control">
+                          <div *ngIf="delPassword.invalid && (delPassword.dirty || delPassword.touched)"> 
+                              <div style="color: red;" *ngIf="delPassword.errors.required"> 
+                                   Password is required.
+                              </div>			   
+                              <div style="color: red;" *ngIf="delPassword.errors.minlength"> 
+                                Password should be at least 6 characters
+                           </div>	
+                           </div> 
+                        </div>
+                      </div>
+                      
+                     
+                </div>
+                <div class="panel-footer">
+                    <div class="form-group">
+                        <div class="col-md-12 widget-right">
+                          <div class="col-md-12 col-sm-12 pull-right">
+                              <button type="submit" [disabled]="!delform.valid" class="btn btn-block btn-primary btn-md pull-right">Delete Account</button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </form>
+              </div>
+          
+            </div>
+</div>

@@ -1,0 +1,58 @@
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  width: 250px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-left: 115px;
+  margin-right: 115px;
+  margin-bottom: 10px;
+}
+.select-css {
+  width: 450px;
+  font-size: 20px;
+  margin: 20px;
+}
+.panel-default {
+  min-height: 300px;
+}
+</style>
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="col-lg-8">
+        <div class="panel panel-default" >
+          <div class="panel-heading" style="min-height: 200; padding: 20px;">
+                <h4 class="" style="padding-bottom: 20px;"><b>MEAL RECCOMENDATIONS </b></h4>
+          </div>
+          <div class="panel-body" id="pbody">
+            <div> <font size="+2">
+              Try incorporating these foods into your next meal to meet your goals of increasing fat intake:
+            </font>
+          </div>
+          <br> 
+           <button type="button" (click)="getReccs()"  class="btn btn-block btn-primary btn-md pull-right">Get Reccomendations</button>
+           <br>
+           <br>
+           <div *ngIf="clicked" style="margin: 20px">
+              <ul style="list-style-type:disc;">
+                <li><h5><b>{{results[0]}}</b></h5></li>
+                <li><h5><b>{{results[1]}}</b></h5></li>
+                <li><h5><b>{{results[2]}}</b></h5></li>
+                <li><h5><b>{{results[3]}}</b></h5></li>
+                <li><h5><b>{{results[4]}}</b></h5></li>
+              </ul>  
+           </div>
+      </div>
+      </div>
+  </div>
+
+
